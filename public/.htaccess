@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /indelsaRepo/public/
+
+    # Si el archivo o directorio existe, servirlo directamente
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Redirigir todo lo que empiece con "api/" a backend/routes/api.php
+    RewriteRule ^api/(.*)$ backend/routes/api.php [QSA,L]
+</IfModule>

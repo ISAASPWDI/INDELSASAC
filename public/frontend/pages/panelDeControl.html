@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Panel de Control</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+
+<body data-page="panel">
+    <header class="bg-white">
+        <div class="container-fluid">
+            <div class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center py-1">
+                <div class="mb-2 mb-md-0 p-3">
+                    <a href="../index.html">
+                        <img src="../assets/img/main-logo-indelsa.webp" alt="Indelsa" height="50">
+                    </a>
+                </div>
+                <div class="d-flex align-items-center flex-wrap justify-content-center">
+                    <div class="d-flex justify-content-center pt-md-2">
+                        <div class="d-none d-md-block me-5">
+                            <img src="../assets/img/orange-wsp-icon.png" alt="wsp-icon" height="25">
+                            <span class="text-orange">+51 960 600 135</span>
+                        </div>
+                        <span class="me-5 text-orange d-none d-md-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="me-2" fill="none" preserveAspectRatio="xMidYMid meet" style="fill: none;"
+                                version="1.0" viewBox="1.0 1.0 30.0 30.0" zoomAndPan="magnify"
+                                original_string_length="827" width="25" height="25">
+                                <g id="__id1_s34thmvgv">
+                                    <path clip-rule="evenodd"
+                                        d="M16 31C24.2843 31 31 24.2843 31 16C31 7.71573 24.2843 1 16 1C7.71573 1 1 7.71573 1 16C1 24.2843 7.71573 31 16 31ZM9.18727 9.61845L16 15.0686L22.8127 9.61846L23.0094 9.45454H8.99058L9.18727 9.61845ZM23.7383 10.7405L24 10.5225V21.8182C24 22.2198 23.6744 22.5455 23.2727 22.5455H8.72727C8.32561 22.5455 8 22.2198 8 21.8182V10.5225L8.26168 10.7405L8.27295 10.7497L15.5457 16.5679C15.8113 16.7804 16.1887 16.7804 16.4543 16.5679L23.7271 10.7497L23.7383 10.7405Z"
+                                        fill-rule="evenodd" style="fill: rgb(236, 124, 47);" />
+                                </g>
+                            </svg>
+                            ventas@indelsasac.com.pe
+                        </span>
+                    </div>
+
+                    <div class="d-flex align-items-center px-3 mb-3 pt-md-2">
+                        <a href="#" class="text-orange me-2">
+                            <img src="../assets/img/orange-fb-icon.png" alt="" height="30">
+                        </a>
+                        <a href="#" class="text-orange me-3">
+                            <img src="../assets/img/orange-instagram-icon.png" alt="" height="20">
+                        </a>
+                        <a href="#" class="text-orange me-3">
+                            <img src="../assets/img/orange-linkedIn-icon.png" alt="" height="25">
+                        </a>
+                        <a href="#" class="text-orange me-3">
+                            <img src="../assets/img/orange-yt-icon.png" alt="" height="17">
+                        </a>
+                        <a href="#" class="text-orange me-2">
+                            <img src="../assets/img/orange-tiktok-icon.png" alt="" height="25">
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <nav class="navbar navbar-expand-lg bg-blue-color">
+                <div class="container">
+                    <!-- Botón de toggler para dispositivos móviles -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Contenido colapsable -->
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <!-- Texto "Hola, Usuario" -->
+                        <p class="me-auto mb-0  text-white">Hola, <span
+                                class="text-white fw-bold user-data-name"></span>
+                        </p>
+
+                        <!-- Lista de elementos alineada a la derecha -->
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-white home-hover-color" href="../index.html">Cerrar sesión</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="px-0 py-5 px-md-5">
+        <!-- Contenedor sticky para el navbar, botones y input de búsqueda -->
+        <div class="sticky-top bg-white">
+            <!-- Navbar principal -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container-fluid px-4">
+                    <a class="navbar-brand fw-bold" href="#">Panel de Administración</a>
+                    <!-- Botón de Ayuda -->
+                    <div class="d-flex align-items-center gap-3 pt-4 pt-md-0">
+                        <button class="btn btn-link text-dark border" data-bs-toggle="modal" data-bs-target="#helpModal"
+                            title="Ayuda">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                            </svg>
+                        </button>
+                        <button class="btn btn-link text-dark border " data-bs-toggle="offcanvas"
+                            data-bs-target="#adminProfile" title="Configuración">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-settings h-4 w-4"
+                                data-component-path="src/pages/Index.tsx" data-component-name="Settings"
+                                data-component-line="64" data-component-file="Index.tsx"
+                                data-component-content="%7B%22className%22%3A%22h-4%20w-4%22%7D">
+                                <path
+                                    d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z">
+                                </path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Contenedor para el título, botón "Agregar Producto" y input de búsqueda -->
+            <div class="container-fluid px-4 py-3 bg-white">
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap flex-md-row">
+                    <!-- Título y ícono de productos -->
+                    <div class="d-flex align-items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
+                        </svg>
+                        <h5 class="mb-0">Productos</h5>
+                    </div>
+
+                    <!-- Botones de Agregar Producto y Filtrar -->
+                    <div class="d-flex align-items-center gap-2 pt-sm-0">
+                        <!-- Botón de Filtrar -->
+                        <button class="btn btn-outline-secondary d-flex align-items-center gap-2"
+                            data-bs-toggle="offcanvas" data-bs-target="#filterProducts">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-filter h-4 w-4">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                            </svg>
+                            <span class="d-none d-md-inline">Filtrar</span>
+                        </button>
+
+                        <!-- Botón de Agregar Categoría -->
+                        <button class="btn btn-outline-secondary d-flex align-items-center gap-2"
+                            data-bs-toggle="offcanvas" data-bs-target="#addCategory">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-folder-plus h-4 w-4">
+                                <path
+                                    d="M12 10v6m-3-3h6M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+                            </svg>
+                            <span class="d-none d-md-inline">Agregar Categoría</span>
+                        </button>
+
+                        <!-- Botón de Agregar Producto -->
+                        <button class="btn bg-blue-color d-flex align-items-center gap-2 text-white"
+                            data-bs-toggle="offcanvas" data-bs-target="#addProduct">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                            </svg>
+                            <span class="d-none d-md-inline">Agregar Producto</span>
+                        </button>
+                    </div>
+                </div>
+
+
+
+                <!-- Offcanvas de Filtrar Productos -->
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="filterProducts">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title">Filtrar Productos</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body px-4">
+                        <p class="text-muted mb-3">Elija una categoría</p>
+                        <div class="list-group filter-product-container">
+                            <a href="#"
+                                class="list-group-item list-group-item-action custom-filter-item fetch-all-products">Todos</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Offcanvas de Agregar Categoría  -->
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="addCategory">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title">Categorías</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <!-- Pestañas -->
+                        <ul class="nav nav-tabs mb-3" id="categoryTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="add-tab" data-bs-toggle="tab" data-bs-target="#add"
+                                    type="button" role="tab" aria-controls="add" aria-selected="true">
+                                    Agregar
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit"
+                                    type="button" role="tab" aria-controls="edit" aria-selected="false">
+                                    Editar
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="delete-tab" data-bs-toggle="tab" data-bs-target="#delete"
+                                    type="button" role="tab" aria-controls="delete" aria-selected="false">
+                                    Eliminar
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Contenido de las pestañas -->
+                        <div class="tab-content" id="categoryTabsContent">
+                            <!-- Pestaña de Agregar Categoría -->
+                            <div class="tab-pane fade show active" id="add" role="tabpanel" aria-labelledby="add-tab">
+                                <p class="text-muted mb-3">Complete los detalles de la categoría a continuación.</p>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="categoryName" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="categoryName"
+                                            placeholder="Nombre de la categoría">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoryDescription" class="form-label">Descripción</label>
+                                        <textarea class="form-control" id="categoryDescription" rows="3"
+                                            placeholder="Descripción de la categoría"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn bg-blue-color text-white w-100">Agregar
+                                        Categoría</button>
+                                </form>
+                            </div>
+
+                            <!-- Pestaña de Editar Categoría -->
+                            <div class="tab-pane fade" id="edit" role="tabpanel" aria-labelledby="edit-tab">
+                                <p class="text-muted mb-3">Seleccione una categoría para editar.</p>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="editCategoryName" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="editCategoryName"
+                                            placeholder="Nombre de la categoría">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editCategoryDescription" class="form-label">Descripción</label>
+                                        <textarea class="form-control" id="editCategoryDescription" rows="3"
+                                            placeholder="Descripción de la categoría"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn bg-blue-color text-white w-100">Guardar
+                                        Cambios</button>
+                                </form>
+                            </div>
+
+                            <!-- Pestaña de Eliminar Categoría -->
+                            <div class="tab-pane fade" id="delete" role="tabpanel" aria-labelledby="delete-tab">
+                                <p class="text-muted mb-3">Seleccione una categoría para eliminar.</p>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="deleteCategoryName" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="deleteCategoryName"
+                                            placeholder="Nombre de la categoría" disabled>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger text-white w-100">Eliminar
+                                        Categoría</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input de búsqueda -->
+                <div class="container-fluid px-2 py-4">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="form-control search-product"
+                            placeholder="Buscar producto...">
+                        <button id="searchButton" class="btn btn-outline-secondary" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-search">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido principal (productos) -->
+        <div class="container-fluid px-4 py-4 load-message-filter-products">
+            <div class="row load-products-panel">
+                <!-- Aquí va el contenido de los productos -->
+            </div>
+        </div>
+
+        <!-- Offcanvas Agregar Producto -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="addProduct">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title ">Agregar Nuevo Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body p-4">
+                <p class="text-muted mb-4">Complete los detalles del producto a continuación.</p>
+                <form>
+                    <div class="mb-3 ">
+                        <label class="form-label">Nombre del producto</label>
+                        <input type="text" class="form-control" placeholder="Nombre del producto">
+                    </div>
+                    <div class="mb-3 ">
+                        <label class="form-label">Marca</label>
+                        <input type="text" class="form-control" placeholder="Marca del producto">
+                    </div>
+                    <div class="mb-3 ">
+                        <label class="form-label">Descripción</label>
+                        <textarea class="form-control" rows="3" placeholder="Descripción del producto"></textarea>
+                    </div>
+                    <div class="mb-3 ">
+                        <label class="form-label">URL de la imagen</label>
+                        <input type="url" class="form-control" placeholder="https://...">
+                    </div>
+                    <div class="mb-3 ">
+                        <label class="form-label ">Detalles técnicos (JSON)</label>
+                        <textarea class="form-control font-monospace" rows="4"
+                            placeholder='{"key": "value"}'></textarea>
+                        <div class="form-text">Use el formato JSON para los detalles técnicos</div>
+                    </div>
+                    <button type="submit" class="btn bg-blue-color text-white w-100">Guardar Producto</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Offcanvas Perfil Admin -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="adminProfile">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Perfil de Administrador</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <p class="text-muted mb-4">Actualice su información de administrador aquí.</p>
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" placeholder="Nombre del administrador">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" placeholder="admin@ejemplo.com">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña actual</label>
+                        <input type="password" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Nueva contraseña</label>
+                        <input type="password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn bg-blue-color text-white">Actualizar Perfil</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal de Ayuda -->
+        <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="helpModalLabel">Instrucciones para Formato JSON</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body mx-2">
+                        <p>Aquí hay
+                            algunas reglas básicas para escribir en formato JSON:</p>
+                        <ul>
+                            <li>Use comillas dobles para texto y números.</li>
+                            <li>Separe los pares "detalle:caracteristica" con comas.</li>
+                            <li>Para el ultimo valor, no use coma.</li>
+                        </ul>
+                        <p>Ejemplo:</p>
+                        <pre class="bg-gray-test rounded">
+
+    {
+
+    "Espesor": "Desde 0.10mm hasta 0.50mm",
+    "Clase Térmica": "A (105°C)",
+    "Formato": "1000 x 1000 mm Aprox.",
+    "Tension de ruptura": "3000V" <-- Sin coma
+
+    }
+
+                        </pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Botón de flecha hacia arriba -->
+        <button id="scrollToTopBtn"
+            class="btn bg-blue-color rounded  text-white shadow-sm position-fixed bottom-0 end-0 me-3 mb-3 d-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z" />
+            </svg>
+        </button>
+        <!-- Modal Editar Producto -->
+
+        <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editProductForm">
+                            <input type="hidden" id="editProductId">
+
+                            <div class="mb-3">
+                                <label for="editProductName" class="form-label">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="editProductName" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="editProductBrand" class="form-label">Marca</label>
+                                <input type="text" class="form-control" id="editProductBrand" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="editProductDescription" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="editProductDescription" maxlength="500"
+                                    style="height: 300px; resize: vertical;" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Detalles Técnicos</label>
+                                <div id="editProductDetails"></div>
+                                <button type="button" class="btn btn-secondary btn-sm mt-2" id="addDetail">Agregar
+                                    Detalle</button>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal Eliminar Producto -->
+        <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteProductModalLabel">Eliminar Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Estás seguro de que deseas eliminar este producto?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+
+
+    <script src="../assets/js/main.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

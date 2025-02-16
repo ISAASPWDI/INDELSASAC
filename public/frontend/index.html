@@ -11,7 +11,7 @@
 
 </head>
 
-<body>
+<body data-page="knowProducts">
     <header class="bg-white">
         <div class="container-fluid">
             <div class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center py-1">
@@ -27,10 +27,10 @@
                             <span class="text-orange">+51 960 600 135</span>
                         </div>
                         <span class="me-5 text-orange d-none d-md-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="me-2"
-                                fill="none" preserveAspectRatio="xMidYMid meet" style="fill: none;" version="1.0"
-                                viewBox="1.0 1.0 30.0 30.0" zoomAndPan="magnify" original_string_length="827" width="25"
-                                height="25">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                class="me-2" fill="none" preserveAspectRatio="xMidYMid meet" style="fill: none;"
+                                version="1.0" viewBox="1.0 1.0 30.0 30.0" zoomAndPan="magnify"
+                                original_string_length="827" width="25" height="25">
                                 <g id="__id1_s34thmvgv">
                                     <path clip-rule="evenodd"
                                         d="M16 31C24.2843 31 31 24.2843 31 16C31 7.71573 24.2843 1 16 1C7.71573 1 1 7.71573 1 16C1 24.2843 7.71573 31 16 31ZM9.18727 9.61845L16 15.0686L22.8127 9.61846L23.0094 9.45454H8.99058L9.18727 9.61845ZM23.7383 10.7405L24 10.5225V21.8182C24 22.2198 23.6744 22.5455 23.2727 22.5455H8.72727C8.32561 22.5455 8 22.2198 8 21.8182V10.5225L8.26168 10.7405L8.27295 10.7497L15.5457 16.5679C15.8113 16.7804 16.1887 16.7804 16.4543 16.5679L23.7271 10.7497L23.7383 10.7405Z"
@@ -40,7 +40,7 @@
                             ventas@indelsasac.com.pe
                         </span>
                     </div>
-                    
+
                     <div class="d-flex align-items-center px-3 mb-3 pt-md-2">
                         <a href="#" class="text-orange me-2">
                             <img src="./assets/img/orange-fb-icon.png" alt="" height="30">
@@ -74,14 +74,15 @@
                                 <a class="nav-link text-white home-hover-color me-2" href="#">Inicio</a>
                             </li>
                             <li class="nav-item vertical-line-white me-3">
+                                <a class="nav-link text-white home-hover-color me-2" href="./pages/contactanos.html">Contáctanos</a>
+                            </li>
+                            <li class="nav-item vertical-line-white me-3">
                                 <a class="nav-link text-white home-hover-color me-2"
-                                    href="">Contáctanos</a>
+                                    href="./pages/nosotros.html">Nosotros</a>
                             </li>
                             <li class="nav-item vertical-line-white me-3">
-                                <a class="nav-link text-white home-hover-color me-2" href="./pages/nosotros.html">Nosotros</a>
-                            </li>
-                            <li class="nav-item vertical-line-white me-3">
-                                <a class="nav-link text-white home-hover-color me-2" href="./pages/productos.html">Productos</a>
+                                <a class="nav-link text-white home-hover-color me-2"
+                                    href="./pages/productos.html">Productos</a>
                             </li>
                             <li class="nav-item me-3">
                                 <a class="nav-link text-white home-hover-color me-2"
@@ -132,60 +133,135 @@
     </header>
     <main>
         <div class="container-fluid">
-          <div class="row g-4 bg-blue-color text-white py-5 px-4 px-sm-5 d-flex align-items-center py-md-5 py-lg-5 ">
-            <!-- Columna de texto -->
-            <div class="col-lg-6 px-md-5 px-lg-0 px-xl-5 py-md-5">
-              <div class="text-container ms-md-5 me-md-5 py-md-5 ">
-                <h2 class="mb-4 text-center">Nuestro Compromiso</h2>
-                <p class="text-justify-custom mb-4">
-                  Las empresas más importantes del medio, en especial del sector Eléctrico, vienen integrando consideraciones Ambientales, Sociales y de Gobernanza en el proceso de producción y servicios. Somos conscientes de la responsabilidad que se debe tener en mantener perenne estas normativas, para así concederles un futuro promisorio a las siguientes generaciones.
-                </p>
-                <p class="mb-0">
-                  Alexander Aguilar Z.<br>
-                  <span>Gerente General</span>
-                </p>
-              </div>
-            </div>
-            
-            <!-- Columna de imagen -->
-            <div class="col-lg-6 px-5 py-4 px-sm-5 py-sm-3 ms-md-5 ms-lg-0 ps-md-0 ps-lg-5 pt-lg-4 d-flex ">
-                <div class="image-container">
-                  <img src="./assets/img/nosotros-img.webp" alt="Nuestro equipo" class="nosotros-img">
-                  <div class="decorative-border"></div>
-                  <img src="./assets/img/puntos-blancos-img.png" alt="Decoración" class="puntos-blancos">
+            <div class="row g-4 bg-blue-color text-white py-5 px-4 px-sm-5 d-flex align-items-center py-md-5 py-lg-5 ">
+                <!-- Columna de texto -->
+                <div class="col-lg-6 px-md-5 px-lg-0 px-xl-5 py-md-5">
+                    <div class="text-container ms-md-5 me-md-5 py-md-5 ">
+                        <h2 class="mb-4 text-center">Nuestro Compromiso</h2>
+                        <p class="text-justify-custom mb-4">
+                            Las empresas más importantes del medio, en especial del sector Eléctrico, vienen integrando
+                            consideraciones Ambientales, Sociales y de Gobernanza en el proceso de producción y
+                            servicios. Somos conscientes de la responsabilidad que se debe tener en mantener perenne
+                            estas normativas, para así concederles un futuro promisorio a las siguientes generaciones.
+                        </p>
+                        <p class="mb-0">
+                            Alexander Aguilar Z.<br>
+                            <span>Gerente General</span>
+                        </p>
+                    </div>
                 </div>
-              </div>
-              
-          </div>
+
+                <!-- Columna de imagen -->
+                <div class="col-lg-6 px-5 py-4 px-sm-5 py-sm-3 ms-md-5 ms-lg-0 ps-md-0 ps-lg-5 pt-lg-4 d-flex ">
+                    <div class="image-container">
+                        <img src="./assets/img/nosotros-img.webp" alt="Nuestro equipo" class="nosotros-img">
+                        <div class="decorative-border"></div>
+                        <img src="./assets/img/puntos-blancos-img.png" alt="Decoración" class="puntos-blancos">
+                    </div>
+                </div>
+
+            </div>
 
         </div>
+        <div class="productos-informacion">
+            <div class="row g-0">
+                <!-- Tarjeta 1 -->
+                <div class="col-12 col-sm-6 col-lg">
+                    <div class="card producto-card">
+                        <img src="./assets/img/transformadores-home-img.webp" class="card-img producto-img"
+                            alt="Transformadores">
+                        <div class="card-img-overlay producto-overlay">
+                            <p class="producto-titulo py-5 fs-2">Transformadores</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div class="col-12 col-sm-6 col-lg">
+                    <div class="card producto-card">
+                        <img src="./assets/img/motores-electricos-home-img.webp" class="card-img producto-img"
+                            alt="Motores Eléctricos">
+                        <div class="card-img-overlay producto-overlay">
+                            <h5 class="producto-titulo py-5 fs-2">Motores Eléctricos</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div class="col-12 col-sm-6 col-lg">
+                    <div class="card producto-card">
+                        <img src="./assets/img/barnizado-home-img.webp" class="card-img producto-img"
+                            alt="Sistema de Barnizado">
+                        <div class="card-img-overlay producto-overlay">
+                            <h5 class="producto-titulo py-5 fs-2">Sistema de Barnizado</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarjeta 4 -->
+                <div class="col-12 col-sm-6 col-lg">
+                    <div class="card producto-card">
+                        <img src="./assets/img/placas-fibras-home-img.webp" class="card-img producto-img"
+                            alt="Placas y Fibras de vidrio">
+                        <div class="card-img-overlay producto-overlay">
+                            <h5 class="producto-titulo py-5 fs-2">Placas y Fibras <br> de vidrio</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarjeta 5 -->
+                <div class="col-12 col-sm-12 col-lg">
+                    <div class="card producto-card">
+                        <img src="./assets/img/conductores-home-img.webp" class="card-img producto-img"
+                            alt="Conductores Eléctricos">
+                        <div class="card-img-overlay producto-overlay">
+                            <p class="producto-titulo py-5 fs-2">Conductores Eléctricos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="carouselknowOurProducts" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner know-our-products">
+              <!-- Los productos se cargarán aquí dinámicamente -->
+            </div>
+            <button class="carousel-control-prev p-0" type="button" data-bs-target="#carouselknowOurProducts" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next p-0" type="button" data-bs-target="#carouselknowOurProducts" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
 
         <!-- Sección de Distribución -->
         <div class="container-fluid bg-blue-color test-border-top text-white">
-            <div class="row py-5 px-3 px-md-5 px-lg-0 align-items-center justify-content-lg-center justify-content-md-between justify-content-xxl-around">
-              <!-- Texto izquierdo -->
-              <div class="col-12 col-md-4 col-lg-3 text-center text-md-end mb-3 mb-md-0">
-                <p class="text-content mb-0">
-                  Llegamos a <br>
-                  <span class="fw-bold">TODO EL PERÚ</span>
-                </p>
-              </div>
-              
-              <!-- Mapa central -->
-              <div class="col-12 col-md-4 col-lg-3 text-center">
-                <img class="peru-map" src="./assets/img/peru-map-img.webp" alt="Mapa del Perú">
-              </div>
-              
-              <!-- Texto derecho -->
-              <div class="col-12 col-md-4 col-lg-3 text-center text-md-start mt-3 mt-md-0">
-                <p class="text-content mb-0">
-                  Lideres en Comercialización a Nivel Nacional de AISLAMIENTOS y CONDUCTORES ELECTRICOS para la INDUSTRIA y MINERÍA
-                </p>
-              </div>
+            <div
+                class="row py-5 px-3 px-md-5 px-lg-0 align-items-center justify-content-lg-center justify-content-md-between justify-content-xxl-around">
+                <!-- Texto izquierdo -->
+                <div class="col-12 col-md-4 col-lg-3 text-center text-md-end mb-3 mb-md-0">
+                    <p class="text-content mb-0">
+                        Llegamos a <br>
+                        <span class="fw-bold">TODO EL PERÚ</span>
+                    </p>
+                </div>
+
+                <!-- Mapa central -->
+                <div class="col-12 col-md-4 col-lg-3 text-center">
+                    <img class="peru-map" src="./assets/img/peru-map-img.webp" alt="Mapa del Perú">
+                </div>
+
+                <!-- Texto derecho -->
+                <div class="col-12 col-md-4 col-lg-3 text-center text-md-start mt-3 mt-md-0">
+                    <p class="text-content mb-0">
+                        Lideres en Comercialización a Nivel Nacional de AISLAMIENTOS y CONDUCTORES ELECTRICOS para la
+                        INDUSTRIA y MINERÍA
+                    </p>
+                </div>
             </div>
-          </div>
-        
-      </main>
+        </div>
+
+
+
+    </main>
     <footer>
 
         <div class="container-fluid">
@@ -363,7 +439,12 @@
             </div>
         </div>
     </footer>
-
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/tu_numero"
+        class="btn position-fixed bottom-0 end-0 m-3 rounded-circle d-flex align-items-center justify-content-center p-3 wsp-position-icon" style="height: 80px; width: 80px;">
+        <img src="./assets/img/bottom-position-wsp-icon.webp" alt="WhatsApp" class="img-fluid">
+    </a>
+    <script src="./assets/js/main.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

@@ -14,6 +14,7 @@
     margin: 0 !important;
     padding: 0 !important;
 }
+
 .carousel-indicators button {
     margin: 0 5px;
     border: none !important;
@@ -26,23 +27,37 @@
 .carousel-indicators button:not(.active) {
     background-color: #ec7c2f !important;
 }
+
 .carousel-control-prev-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ec7c2f' stroke-width='1'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e") !important;
-    width:90px !important;
+    width: 90px !important;
     height: 90px !important;
 }
 
 .carousel-control-next-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ec7c2f' stroke-width='1'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
-width: 90px !important;
+    width: 90px !important;
     height: 90px !important;
 }
+
 .btn-warning {
     background-color: #ec7c2f !important;
 }
+.more-tec-info-btn {
+    transition: border 0.3s ease-in-out;
+}
+
+.more-tec-info-btn:hover,
+.more-tec-info-btn:focus,
+.more-tec-info-btn:active {
+    opacity: 100%;
+    border: 3px solid #0f69a7 !important;
+}
+
 .btn-warning:hover {
     opacity: 80%;
 }
+
 .btn-warning:focus {
     background-color: #ec7c2f !important;
     border-color: #ec7c2f !important;
@@ -51,40 +66,54 @@ width: 90px !important;
 .form-control::placeholder {
     color: #d0d3d9 !important;
     font-weight: 500;
-    opacity: 1; 
+    opacity: 1;
 }
+
 .offcanvas {
     --bs-offcanvas-width: 400px;
 }
+
 .btn.text-blue:hover,
 .btn.text-orange:hover {
-    background-color: #f4f4f5; 
-    transition: background-color 0.3s ease; 
+    background-color: #f4f4f5;
+    transition: background-color 0.3s ease;
 }
+
 .btn.text-blue:active,
 .btn.text-orange:active {
     background-color: #f4f4f5 !important;
-    border-color: #f4f4f5 !important; 
+    border-color: #f4f4f5 !important;
 
 }
 
 .btn.text-blue:focus,
 .btn.text-orange:focus {
     background-color: #f4f4f5 !important;
-    border-color: #f4f4f5 !important; 
+    border-color: #f4f4f5 !important;
 }
 
 /*Our Styles*/
+.bg-green-cotizar {
+    background-color: #26d367 !important;
+
+}
+
+.cotizar-link {
+    text-decoration: none;
+}
 
 .bg-gray-test {
     background-color: #f2f2f2 !important;
 }
+
 .bg-blue-color {
     background-color: #0f69a7 !important;
 }
-.text-blue{
+
+.text-blue {
     color: #0f69a7 !important;
 }
+
 .image-container {
     position: relative;
     padding: 20px;
@@ -96,7 +125,7 @@ width: 90px !important;
 
 .nosotros-img {
     position: relative;
-    z-index: 2;
+    z-index: 800;
     width: 100%;
     height: auto;
     display: block;
@@ -105,9 +134,9 @@ width: 90px !important;
 
 .decorative-border {
     position: absolute;
-    right: 35px; 
-    top: -10px; 
-    z-index: 1;
+    right: 35px;
+    top: -10px;
+    z-index: 700;
     width: 90%;
     height: 80%;
     border: 8px solid white;
@@ -118,18 +147,19 @@ width: 90px !important;
     position: absolute;
     right: -10px;
     bottom: -10px;
-    z-index: 1;
+    z-index: 700;
     width: 85%;
     height: 80%;
     object-fit: contain;
 }
+
 .text-orange {
     color: #ec7c2f !important;
 }
 
 
 .home-hover-color {
-    transition: color 0.3s ease, 0.3s ease; 
+    transition: color 0.3s ease, 0.3s ease;
 }
 
 .home-hover-color:hover {
@@ -138,14 +168,19 @@ width: 90px !important;
     outline: none;
 }
 
+.border-orange-bottom {
+    border-bottom: 2px solid #ec7c2f;
+}
+
 .border-gray-bottom {
     border-bottom: 18px solid #c4c4c4;
 }
 
 .border-warning-subtle-right {
-    border-right: 6px solid #ec7c2f !important;
+    border-bottom: 6px solid #ec7c2f !important;
     font-size: 18px;
 }
+
 .text-justify-custom {
     text-align: justify !important;
     -webkit-text-align-last: left;
@@ -162,7 +197,8 @@ width: 90px !important;
     color: #0f6aa7;
     font-weight: normal;
 }
-.test-border-top{
+
+.test-border-top {
     border-top: 8px solid #ec7c2f;
 }
 
@@ -176,10 +212,11 @@ width: 90px !important;
     object-fit: contain;
     margin-right: 10px;
 }
+
 .peru-map {
     width: 268px;
-  }
-  
+}
+
 .text-content {
     font-size: 1.1rem;
     line-height: 1.5;
@@ -189,9 +226,11 @@ width: 90px !important;
 .btn-eye {
     border: 1px solid #dee2e6 !important;
 }
-.btn-eye:hover{
+
+.btn-eye:hover {
     opacity: 80%;
 }
+
 .btn-eye .eye-icon {
     stroke: #0f69a7;
 }
@@ -199,80 +238,193 @@ width: 90px !important;
 /* panel de control */
 
 .card-img-container {
-    height: 200px; 
-    overflow: hidden; 
+    height: 200px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .card-img-top {
-    width: 100%; 
+    width: 100%;
     height: auto;
     padding: 50px;
 }
+
 .product-card {
     transition: all 0.3s ease;
 }
+
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-.search-product{
+
+.search-product {
     max-width: 600px;
 }
-.search-product:active{
-    border-color:  #6c757d !important;
+
+.search-product:active {
+    border-color: #6c757d !important;
     box-shadow: none !important;
 }
-.search-product:focus{
-    border-color:  #6c757d !important;
+
+.search-product:focus {
+    border-color: #6c757d !important;
     box-shadow: none !important;
 }
+
 .custom-filter-item {
-    background-color: #f6f6f7 !important; /* Color de fondo */
-    color: white; /* Color del texto */
-    border-radius: 8px; /* Bordes redondeados */
-    margin-bottom: 15px; /* Separación entre elementos */
-    border: none !important; /* Sin borde */
-    padding: 12px 16px; /* Espaciado interno */
-    text-decoration: none; /* Sin subrayado */
+    background-color: #f6f6f7 !important;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    margin-bottom: 15px;
+    /* Separación entre elementos */
+    border: none !important;
+    /* Sin borde */
+    padding: 12px 16px;
+    /* Espaciado interno */
+    text-decoration: none;
+    /* Sin subrayado */
     height: 40px !important;
-    transition: background-color 0.3s ease; /* Transición suave */
+    transition: background-color 0.3s ease;
+    /* Transición suave */
 }
 
 .custom-filter-item:hover {
     background-color: #0d5a8f !important;
-    color: rgb(255,255,255) !important;
+    color: rgb(255, 255, 255) !important;
 
 }
 
+.wsp-position-icon {
+    z-index: 999;
+}
+
+.producto-card {
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease-in-out;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: hidden;
+}
+
+.producto-card:hover {
+    background-color: #ec7c2f;
+}
+
+.producto-img {
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 0 !important;
+    object-fit: cover;
+    height: 300px;
+}
+
+.producto-card:hover img {
+    opacity: 0.8;
+}
+
+.producto-overlay {
+    transition: color 0.3s ease-in-out;
+    font-weight: normal !important;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+    padding: 1rem;
+}
+
+.producto-card:hover .producto-overlay {
+    color: white;
+}
+
+.producto-titulo {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+.form-control.custom-placeholder::placeholder,
+.form-select.custom-placeholder::placeholder {
+    color: #ec7c2f !important;
+    opacity: 1;
+}
+
+
+.form-control.custom-placeholder::-webkit-input-placeholder {
+    color: #ec7c2f;
+}
+
+.form-control.custom-placeholder::-moz-placeholder {
+    color: #ec7c2f;
+}
+
+.form-control.custom-placeholder:-ms-input-placeholder {
+    color: #ec7c2f;
+}
+
+.form-control.custom-placeholder:-moz-placeholder {
+    color: #ec7c2f;
+}
+.btn-enviar-solicitud {
+    transition: all 0.3s ease;
+    padding: 0.5rem 1.5rem;
+}
+
+.btn-enviar-solicitud::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 2.5px solid #ff6600;
+    border-radius: 50rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.btn-enviar-solicitud:hover {
+    opacity: .9;
+    transform: translateY(-1px);
+    padding: 0.5rem 2rem;
+}
+
+.btn-enviar-solicitud:hover::before {
+    opacity: 1;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+}
 @media (min-width: 576px) {
     .card-img-top {
         padding: 165px;
     }
- }
+}
 
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
     /* .vertical-line-white{
         border: none;
     } */
-    
+
     .border-warning-subtle-right {
-        border-right: none !important;
-        border-bottom: 6px solid #ec7c2f !important;
+        border-right: 6px solid #ec7c2f !important;
+        border-bottom: none !important;
     }
 
     .padding-middle {
         padding-top: 80px !important;
         padding-bottom: 80px !important;
     }
+
     .text-container {
         padding: 1rem 2rem;
         text-align: center;
     }
-    
+
     .image-container {
         margin-top: 2rem;
         max-width: 100%;
@@ -291,49 +443,63 @@ width: 90px !important;
         top: -40px;
         width: 90%;
         height: 100%;
-        border: 10px solid white; 
+        border: 10px solid white;
     }
+
     .peru-map {
         max-width: 200px;
-      }
-      
-    .text-md-end {
-        text-align: center !important; /* Alinear texto al centro en móviles */
     }
+
+    .text-md-end {
+        text-align: center !important;
+        /* Alinear texto al centro en móviles */
+    }
+
     .card-img-top {
         padding: 60px;
     }
 }
 
 
-@media (min-width: 992px) { 
-    .vertical-line-white{
+@media (min-width: 992px) {
+    .vertical-line-white {
         border-right: 2px solid #fff;
     }
+
     .card-img-top {
         padding: 40px;
     }
 }
 
 
-@media (min-width: 1200px) { 
-    .peru-map{
+@media (min-width: 1200px) {
+    .peru-map {
         max-width: 600px !important;
 
     }
+
     .card-img-top {
         padding: 70px;
     }
- }
+
+    .producto-card {
+        height: 500px !important;
+    }
+
+    .producto-img {
+        height: 500px !important;
+    }
+}
 
 
 @media (min-width: 1400px) {
 
-    .peru-map{
+    .peru-map {
         width: 450px !important;
         height: 450px !important;
     }
+
     .card-img-top {
         padding: 120px;
     }
- }
+}

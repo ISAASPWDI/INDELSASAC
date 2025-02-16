@@ -3,9 +3,10 @@ require_once __DIR__ . '/../models/Producto.php';
 require_once __DIR__ . '/../config/Database.php';
 
 
+
 class ProductoController {
     private $producto;
-    
+
     public function __construct() {
         $database = new Database();
         $db = $database->getConnection();
@@ -67,7 +68,7 @@ class ProductoController {
             
             return [
                 "status" => "success",
-                "productos" => count($result["productos"]) > 0 ? $result["productos"] : ["No se encontraron resultados"],
+                "productos" => $result["productos"],
                 "currentPage" => $page,
                 "totalPages" => $result["totalPages"],
                 "totalProducts" => $result["totalProducts"],
@@ -90,77 +91,149 @@ class ProductoController {
     
     public function agregarProducto() {
         try {
-            // Validar que sea una petición POST
+            // Verificar si se envió un formulario con datos
             if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 throw new Exception('Método no permitido');
             }
-            
-            // Obtener datos del body
-            $data = json_decode(file_get_contents("php://input"), true);
-            
-            // Validar datos requeridos
-            if (!isset($data['nombre']) || !isset($data['descripcion'])) {
+    
+            // Obtener datos del formulario
+            $nombre = $_POST['nombre'] ?? null;
+            $marca = $_POST['marca'] ?? null;
+            $descripcion = $_POST['descripcion'] ?? null;
+            $categorias = isset($_POST['categorias']) ? (array)$_POST['categorias'] : [];
+            $detalles = json_decode($_POST['detalles'], true) ?? [];
+    
+            // Validar datos
+            if (!$nombre || !$descripcion || empty($categorias)) {
                 throw new Exception('Faltan datos requeridos');
             }
-            
-            // Manejar la imagen si existe
-            $imagen = isset($_FILES['imagen']) ? $this->subirImagen($_FILES['imagen']) : null;
-            
+    
+            // Manejo de la imagen
+            $imagen = null;
+            if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === 0) {
+                $imagen = $this->subirImagen($_FILES['imagen']);
+            } else {
+                throw new Exception('Debe subir una imagen');
+            }
+    
+            // Insertar el producto
             $resultado = $this->producto->agregar(
-                $data['nombre'],
-                $data['descripcion'],
-                $data['marca'] ?? null,
+                $nombre,
+                $descripcion,
+                $marca,
                 $imagen,
-                $data['detalles'] ?? []
+                $categorias,
+                $detalles
             );
-            
-            http_response_code(201);
-            echo json_encode(['status' => 'success', 'id' => $resultado]);
-            
+    
+            if ($resultado) {
+                echo json_encode(['status' => 'success', 'message' => 'Producto agregado correctamente']);
+            } else {
+                throw new Exception('No se pudo agregar el producto');
+            }
         } catch (Exception $e) {
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+            echo json_encode([
+                'status' => 'error', 
+                'message' => $e->getMessage()
+            ]);
         }
     }
     
     public function editarProducto($id) {
+        // Asegurarnos de que siempre enviemos una respuesta JSON
+        header('Content-Type: application/json');
+        
         try {
-            if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
-                throw new Exception('Método no permitido');
-            }
-    
             // Obtener los datos del formulario
-            $nombre = $_POST['nombre'] ?? null;
-            $marca = $_POST['marca'] ?? null;
-            $descripcion = $_POST['descripcion'] ?? null;
-            $detalles = json_decode($_POST['detalles'], true) ?? [];
-            $imagen_actual = $_POST['imagen_actual'] ?? null;
-    
-            // Verificar si se subió una nueva imagen
-            $imagen = isset($_FILES['imagen']) ? $this->subirImagen($_FILES['imagen']) : $imagen_actual;
-    
-            // Validar datos requeridos
-            if (!$nombre || !$descripcion) {
-                throw new Exception('Faltan datos requeridos');
+            $putData = file_get_contents("php://input");
+            $boundary = substr($putData, 0, strpos($putData, "\r\n"));
+            $parts = array_slice(explode($boundary, $putData), 1, -1);
+            $formData = [];
+            
+            foreach ($parts as $part) {
+                if (empty($part)) continue;
+                
+                if (preg_match('/name=\"([^\"]*)\".*?(\r\n\r\n)(.*?)(\r\n)?$/s', $part, $matches)) {
+                    $name = $matches[1];
+                    $value = trim($matches[3]);
+                    
+                    if ($name === 'imagen' && strpos($part, 'filename') !== false) {
+                        preg_match('/Content-Type: (.*?)\r\n\r\n(.*?)$/s', $part, $fileMatches);
+                        $tmpFile = tempnam(sys_get_temp_dir(), 'upload_');
+                        file_put_contents($tmpFile, $fileMatches[2]);
+                        $_FILES['imagen'] = [
+                            'name' => uniqid() . '.webp',
+                            'type' => $fileMatches[1],
+                            'tmp_name' => $tmpFile,
+                            'error' => 0,
+                            'size' => strlen($fileMatches[2])
+                        ];
+                        $formData[$name] = $_FILES['imagen'];
+                    } else {
+                        $formData[$name] = $value;
+                    }
+                }
             }
     
-            // Llamar al método editar del modelo
+            // Validar y procesar los datos requeridos
+            $nombre = $formData['nombre'] ?? null;
+            $marca = $formData['marca'] ?? null;
+            $descripcion = $formData['descripcion'] ?? null;
+            $detalles = !empty($formData['detalles']) ? json_decode($formData['detalles'], true) : [];
+            $imagen_actual = $formData['imagen_actual'] ?? null;
+            $categorias = !empty($formData['categorias']) ? json_decode($formData['categorias'], true) : [];
+    
+            // Validación detallada
+            $errores = [];
+            if (empty($nombre)) $errores[] = "El nombre es requerido";
+            if (empty($descripcion)) $errores[] = "La descripción es requerida";
+            if (empty($categorias)) $errores[] = "Debe seleccionar al menos una categoría";
+            if (empty($marca)) $errores[] = "La marca es requerida";
+    
+            if (!empty($errores)) {
+                throw new Exception(implode(', ', $errores));
+            }
+    
+            // Procesar imagen
+            $imagen = $imagen_actual;
+            if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === 0) {
+                $imagen = $this->subirImagen($_FILES['imagen']);
+                if (!$imagen) {
+                    throw new Exception('Error al procesar la imagen');
+                }
+            }
+    
+            // Ejecutar la actualización
             $resultado = $this->producto->editar(
                 $id,
                 $nombre,
                 $descripcion,
                 $marca,
                 $imagen,
+                $categorias,
                 $detalles
             );
     
-            echo json_encode(['status' => 'success']);
+            if ($resultado) {
+                echo json_encode([
+                    'status' => 'success',
+                    'message' => 'Producto actualizado correctamente'
+                ]);
+            } else {
+                throw new Exception('Error al actualizar el producto en la base de datos');
+            }
     
         } catch (Exception $e) {
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
         }
     }
+    
+    
     
     public function eliminarProducto($id) {
         try {
@@ -182,15 +255,39 @@ class ProductoController {
         }
     }
     
-    private function subirImagen($imagen) { 
-        $target_dir = __DIR__ . "/../uploads/";
-        $fileName = uniqid() . "_" . basename($imagen["name"]);
-        $target_file = $target_dir . $fileName;
-    
-        if (move_uploaded_file($imagen["tmp_name"], $target_file)) {
-            return $fileName;
+    private function subirImagen($imagen) {
+        try {
+            // Obtener la ruta absoluta del directorio raíz del proyecto
+            $base_path = realpath(dirname(dirname(dirname(__FILE__))));
+            $target_dir = $base_path . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
+            
+            // Verificar si el directorio existe
+        if (!file_exists($target_dir)) {
+            if (!mkdir($target_dir, 0777, true)) {
+                throw new Exception('No se pudo crear el directorio de uploads');
+            }
         }
-        throw new Exception('Error al subir la imagen');
+        
+        // Verificar permisos
+        if (!is_writable($target_dir)) {
+            throw new Exception('El directorio de uploads no tiene permisos de escritura');
+        }
+
+        // Generar nombre único
+        $extension = strtolower(pathinfo($imagen["name"], PATHINFO_EXTENSION));
+        $fileName = uniqid() . "." . $extension;
+        $target_file = $target_dir . $fileName;
+
+        // Intentar mover el archivo
+        if (!rename($imagen["tmp_name"], $target_file)) {
+            throw new Exception('No se pudo mover el archivo. Ruta: ' . $target_file);
+        }
+
+        return $fileName;
+        } catch (Exception $e) {
+            error_log("Error al subir imagen: " . $e->getMessage());
+            throw new Exception('Error al procesar la imagen: ' . $e->getMessage());
+        }
     }
     
 }

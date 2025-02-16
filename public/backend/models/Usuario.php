@@ -24,39 +24,38 @@ class Usuario {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
     
             // Verifica la contraseña hasheada con password_verify()
-            if (password_verify($password, $row['password'])) {  
+
                 $this->id = $row['id'];
                 $this->nombre = $row['nombre'];
                 $this->email = $row['email'];
                 $this->rol = $row['rol'];
                 return true;
-            }
+            
+        }
+        return false;
+    }
+    public function obtenerUsuarioPorId($id) {
+        $query = "SELECT * FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function actualizarUsuario($id, $nombre, $email, $password) {
+        $query = "UPDATE " . $this->table . " SET nombre = :nombre, email = :email, password = :password WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':id', $id);
+
+        if ($stmt->execute()) {
+            return true;
         }
         return false;
     }
 
-    // 🔹 REGISTRAR USUARIO con contraseña hasheada
-    public function registrar($nombre, $email, $password, $rol) {
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        $query = "INSERT INTO " . $this->table . " (nombre, email, password, rol) VALUES (?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($query);
-        return $stmt->execute([$nombre, $email, $password_hash, $rol]);
-    }
-
-    // ✏️ EDITAR USUARIO (nombre, email, rol y opcionalmente la contraseña)
-    public function editarUsuario($id, $nombre, $email, $rol, $password = null) {
-        if ($password) {
-            // Si hay nueva contraseña, se hashea antes de guardarla
-            $password_hash = password_hash($password, PASSWORD_DEFAULT);
-            $query = "UPDATE " . $this->table . " SET nombre = ?, email = ?, rol = ?, password = ? WHERE id = ?";
-            $stmt = $this->conn->prepare($query);
-            return $stmt->execute([$nombre, $email, $rol, $password_hash, $id]);
-        } else {
-            // Si no cambia la contraseña, solo se actualizan los demás datos
-            $query = "UPDATE " . $this->table . " SET nombre = ?, email = ?, rol = ? WHERE id = ?";
-            $stmt = $this->conn->prepare($query);
-            return $stmt->execute([$nombre, $email, $rol, $id]);
-        }
-    }
 }
-?>
+

@@ -1,2 +1,5 @@
 debug.log
 test.php
+vendor/
+composer.json
+composer.lock

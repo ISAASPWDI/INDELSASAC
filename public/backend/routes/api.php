@@ -133,7 +133,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE' && strpos($path, 'productos/eliminar
     }
     exit;
 }
-
+// Obtener todos los productos
+if (strpos($path, 'productos/all') === 0 && $_SERVER['REQUEST_METHOD'] === 'GET') {
+    $result = $productController->getAllProducts();
+    echo json_encode($result);
+    exit;
+}
 //Obtener productos paginados
 if (strpos($path, 'productos/paginar') === 0 && $_SERVER['REQUEST_METHOD'] === 'GET') {
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;

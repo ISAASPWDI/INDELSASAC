@@ -4,25 +4,25 @@ let currentCategory = "Todos";
 export function filtrarPorCategoria() {
     getCategories();
     let searchTimeout;
-document.getElementById('searchInput').addEventListener('input', function() {
-    const searchTerm = this.value.trim();
-    const paginationContainerFiltered = document.querySelector('.pagination-container-filtered');
-    if (!paginationContainerFiltered) {
-        return;
-    }
-    // Limpiar el timeout anterior
-    clearTimeout(searchTimeout);
-    
-    // Establecer un nuevo timeout
-    searchTimeout = setTimeout(() => {
-        if (searchTerm === '') {
-            fetchProductsByCategory(currentCategory, 1);
+    document.getElementById('searchInput').addEventListener('input', function () {
+        const searchTerm = this.value.trim();
+        const paginationContainerFiltered = document.querySelector('.pagination-container-filtered');
+        if (!paginationContainerFiltered) {
             return;
         }
-        
-        searchInFilteredProducts(currentCategory, searchTerm, 1);
-    }, 300); // Esperar 300ms después de que el usuario deje de escribir
-});
+        // Limpiar el timeout anterior
+        clearTimeout(searchTimeout);
+
+        // Establecer un nuevo timeout
+        searchTimeout = setTimeout(() => {
+            if (searchTerm === '') {
+                fetchProductsByCategory(currentCategory, 1);
+                return;
+            }
+
+            searchInFilteredProducts(currentCategory, searchTerm, 1);
+        }, 300); // Esperar 300ms después de que el usuario deje de escribir
+    });
 
 }
 
@@ -97,6 +97,9 @@ async function fetchProductsByCategory(category, page = 1) {
 
             const { productos, currentPage: apiCurrentPage, totalPages: apiTotalPages } = data;
             currentCategory = category;
+
+
+
             // Actualizar variables globales
             currentCategoryPage = apiCurrentPage;
             totalCategoryPages = apiTotalPages;
@@ -152,8 +155,7 @@ async function fetchProductsByCategory(category, page = 1) {
                 loadProducts(1);
             });
             productsMessage.insertAdjacentElement('afterbegin', resetButton);
-
-
+            
             // panel.innerHTML = '';
 
 
@@ -228,15 +230,22 @@ async function fetchProductsByCategory(category, page = 1) {
                 // Obtener detalles técnicos
                 const detallesContainer = document.getElementById(`detalles-${product.id}`);
                 getProductDetails(product.id, detallesContainer);
+
+                if (productos.includes("No se encontraron resultados")) {
+                    productPanel.innerHTML = `<p class="text-center">No se encontraron productos</p>`;
+                    return;
+                }
+
+
             });
 
-                
+
 
             // Renderizar botones de paginación
             renderPaginationButtons(category);
             //AGREGAR EVENTOS PARA EDITAR Y ELIMINAR AQUI:
-                initializeEventListeners();
-             
+            initializeEventListeners();
+
         } else {
             console.error("Error al obtener productos:", data.message);
             productPanel.innerHTML = "<p>Error al cargar productos.</p>";
@@ -291,7 +300,7 @@ async function searchInFilteredProducts(category, searchTerm, page) {
     try {
         const res = await fetch(`/indelsaRepo/public/api/productos/categorias/buscar?category=${category}&search=${searchTerm}&page=${page}`);
         const data = await res.json();
-        
+
         // Limpiar el panel actual siempre, independientemente de si hay resultados o no
         productPanel.innerHTML = '';
 
@@ -306,18 +315,18 @@ async function searchInFilteredProducts(category, searchTerm, page) {
                         <p class="mb-0">Intenta con otros términos de búsqueda.</p>
                 </div>
             `;
-            return;
+                return;
             }
             async function getProductDetails(productId, container) {
                 try {
                     const res = await fetch(`/indelsaRepo/public/api/productos/detalles?id=${productId}`);
                     const details = await res.json();
-            
+
                     if (!details || Object.keys(details).length === 0) {
                         container.innerHTML = "<li>No especificados</li>";
                         return;
                     }
-        
+
                     container.innerHTML = Object.entries(details)
                         .map(([key, value]) => `<li><strong>${key}:</strong> ${value}</li>`)
                         .join("");
@@ -370,18 +379,18 @@ async function searchInFilteredProducts(category, searchTerm, page) {
                     </div>
                 `;
                 productPanel.insertAdjacentHTML('beforeend', productHTML);
-                
+
                 const detallesContainer = document.getElementById(`detalles-${product.id}`);
                 getProductDetails(product.id, detallesContainer);
             });
-            
+
             // Actualizar mensaje de resultados
             const pMessage = document.querySelector('.load-message-filter-products p.text-muted');
             if (pMessage) {
                 pMessage.textContent = `Mostrando ${data.productos.length} resultados de búsqueda`;
             }
             //AGREGAR EVENTOS PARA EDITAR Y ELIMINAR AQUI
-                 initializeEventListeners();
+            initializeEventListeners();
         } else {
             // Mostrar mensaje cuando no hay resultados
             productPanel.innerHTML = `
@@ -394,7 +403,7 @@ async function searchInFilteredProducts(category, searchTerm, page) {
                     </div>
                 </div>
             `;
-            
+
             // Actualizar mensaje de resultados
             const pMessage = document.querySelector('.load-message-filter-products p.text-muted');
             if (pMessage) {

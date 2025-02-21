@@ -12,6 +12,9 @@ class ProductoController {
         $db = $database->getConnection();
         $this->producto = new Producto($db);
     }
+    public function getAllProducts() {
+        return $this->producto->getAllProducts();
+    }
     public function searchProductsByCategory($category) {
         return $this->producto->searchProductsByCategory($category);
     }

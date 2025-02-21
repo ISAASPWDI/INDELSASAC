@@ -760,8 +760,6 @@ export function initializeEventListeners() {
         addCategoryForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             const nombre = document.getElementById('categoryName').value;
-            const descripcion = document.getElementById('categoryDescription').value;
-            console.log(nombre, descripcion);
 
             try {
                 const response = await fetch('/indelsaRepo/public/api/categorias/agregar', {
@@ -769,7 +767,7 @@ export function initializeEventListeners() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ nombre, descripcion }),
+                    body: JSON.stringify({ nombre }),
                 });
 
                 const result = await response.json();
@@ -794,7 +792,6 @@ export function initializeEventListeners() {
             // Obtener los datos del formulario
             const id = document.getElementById('editCategoryId').value;
             const nombre = document.getElementById('editCategoryName').value;
-            const descripcion = document.getElementById('editCategoryDescription').value;
 
             try {
                 const response = await fetch(`/indelsaRepo/public/api/categorias/editar?id=${id}`, {
@@ -802,7 +799,7 @@ export function initializeEventListeners() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ nombre, descripcion }),
+                    body: JSON.stringify({ nombre}),
                 });
 
                 const result = await response.json();

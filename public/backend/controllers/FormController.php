@@ -43,6 +43,7 @@ class FormController
 
             // Destinatarios
             $mail->setFrom('no-reply@indelsa.com', 'INDELSA');
+            //asesor de indelsa
             $mail->addAddress('stivensaliaga@gmail.com', 'Soy ADMIN');
 
             // Contenido

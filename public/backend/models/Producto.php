@@ -9,6 +9,12 @@ class Producto
     {
         $this->conn = $db;
     }
+    public function getAllProducts() {
+        $query = "SELECT * FROM " . $this->table;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function searchProducts($searchTerm)
     {
         $query = "SELECT * FROM " . $this->table . " WHERE nombre LIKE :searchTerm OR marca LIKE :searchTerm";

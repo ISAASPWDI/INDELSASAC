@@ -5,6 +5,7 @@ let currentPage = 1;
 
 export function products() {
     console.log('products working');
+    loadAllProductsCarousel();
     arrowStart();
     loadGeneralProducts(1);
     getCategories();
@@ -19,7 +20,6 @@ export async function loadGeneralProducts(page) {
         if (data.status === 'success') {
             updateGeneralMessage(data.productos.length, page, data.totalPages);
             displayProducts(data.productos);
-            showRelatedProducts(data.productos);
             createPagination(data.totalPages, page);
         } else {
             panel.innerHTML = '<div class="alert alert-danger">Error al cargar productos</div>';
@@ -110,7 +110,7 @@ async function displayProductDetail(productId, allProducts) {
                             <p class="mb-2 fs-4">DESCRIPCIÓN DEL PRODUCTO:</p>
                             <h2 class="text-blue mb-3">${product.nombre}</h2>
                             <p class="mb-3">${product.descripcion}</p>
-                            <p class="mb-0 fw-bold">MARCA: ${product.marca}</p>
+                            <p class="mb-0 fw-bold">MARCA: ${product.marca || 'No especificado'}</p>
                         </div>
                     </div>
                 </div>
@@ -156,7 +156,7 @@ async function displayProductDetail(productId, allProducts) {
                     
                     <!-- Quotation Button -->
                     <div class="col-md-3 px-4 py-md-3">
-                        <a href="https://wa.me/" class="d-flex align-items-center flex-wrap flex-md-row cotizar-link">
+                        <a href="https://web.whatsapp.com/send?phone=51960600135&text=Hola%21%20Quisiera%20cotizar%20el%20producto%20${product.nombre}%20por%20favor..." target="_blank" class="d-flex align-items-center flex-wrap flex-md-row cotizar-link">
                             <span class="text-orange me-3">Solicita tu Cotización</span>
                             <img src="../assets/img/green-wsp-icon.webp" alt="WhatsApp" class="ms-2 mt-md-3 mt-lg-3 mt-xl-0" style="width: 45px; height: 45px;">
                         </a>
@@ -227,44 +227,66 @@ export async function displayProducts(productos) {
         });
     });
 }
-async function showRelatedProducts(productos) {
-    const panelRelated = document.querySelector('.load-related-products');
-    panelRelated.innerHTML = '';
+async function loadAllProductsCarousel() {
+    try {
+        const response = await fetch('/indelsaRepo/public/api/productos/all');
+        const productos = await response.json();
+        
+        // Seleccionamos el carousel con el nuevo ID
+        const carouselInner = document.querySelector('#carouselshowrealtedproducts .carousel-inner');
+        carouselInner.innerHTML = '';
+        
+        // Dividimos los productos en grupos de 6 para cada slide
+        const productGroups = [];
+        while (productos.length > 0) {
+            productGroups.push(productos.splice(0, 6));
+        }
 
-    if (productos.length > 6) {
-        productos = productos.sort(() => 0.5 - Math.random()).slice(0, 6);
-    }
-
-    productos.forEach(product => {
-        const productHTML = `
-            <div class="col-12 col-md-6 col-lg-4 col-xl-2 mb-4">
-                <div class="card product-card border border-white" data-id="${product.id}">
-                    <div class="card-img-container d-flex w-100">
-                        <img src="../../uploads/${product.imagen}" class="card-img-top img-fluid p-md-5 p-lg-5 p-xl-0" alt="Producto" style="min-height: 180px;">
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-center">
-                            <div class="product-info">
-                                <div>
-                                    <h5 class="card-title text-center text-blue fw-bold pt-3">${product.nombre}</h5>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <button class="btn bg-green-cotizar d-flex align-items-center gap-2" 
-                                            data-product-id="${product.id}">
-                                        <a href="#" class="text-white fw-bold cotizar-link">
-                                        <img class="text-white" src="../assets/img/whatsapp-white-icon-transparent.png" alt="wsp-cotizar-icon" height="20">
-                                        ¡COTIZAR!</a>
-                                    </button>
+        productGroups.forEach((group, index) => {
+            const slideActive = index === 0 ? 'active' : '';
+            const slideHTML = `
+                <div class="carousel-item ${slideActive}">
+                    <div class="row justify-content-center">
+                        ${group.map(product => `
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-2 mb-4">
+                                <div class="card product-card border border-white" data-id="${product.id}">
+                                    <div class="card-img-container d-flex w-100">
+                                        <img src="../../uploads/${product.imagen}" class="card-img-top related-products-img img-fluid p-md-5 p-lg-5 p-xl-0" alt="Producto">
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center">
+                                            <div class="product-info">
+                                                <div>
+                                                    <h5 class="card-title text-center text-blue fw-bold pt-3">${product.nombre}</h5>
+                                                </div>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn bg-green-cotizar d-flex align-items-center gap-2" 
+                                                            data-product-id="${product.id}">
+                                                        <a href="https://web.whatsapp.com/send?phone=51960600135&text=Hola%21%20Quisiera%20cotizar%20el%20producto%20${encodeURIComponent(product.nombre)}%20por%20favor..." 
+                                                           target="_blank" 
+                                                           class="text-white fw-bold cotizar-link">
+                                                            <img class="text-white" 
+                                                                 src="../assets/img/whatsapp-white-icon-transparent.png" 
+                                                                 alt="wsp-cotizar-icon" 
+                                                                 height="15">
+                                                            ¡COTIZAR!
+                                                        </a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        `).join('')}
                     </div>
                 </div>
-            </div>
-        `;
-
-        panelRelated.insertAdjacentHTML('beforeend', productHTML);
-    });
+            `;
+            carouselInner.insertAdjacentHTML('beforeend', slideHTML);
+        });
+    } catch (error) {
+        console.error('Error loading products:', error);
+    }
 }
 // async function showKnowOurProducts(productos) {
 //     console.log(productos);
@@ -413,7 +435,7 @@ function displayResults(products) {
                                     <button class="btn discover-more-btn d-flex align-items-center gap-2" 
                                             data-product-id="${product.id}">
                                         <span class="text-orange">Descubre más</span>
-                                        <img src="../img/discover-more-orange-icon.png" 
+                                        <img src="../assets/img/discover-more-orange-icon.png" 
                                              alt="discover-more-icon" 
                                              height="15">
                                     </button>

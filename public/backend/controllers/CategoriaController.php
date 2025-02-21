@@ -23,13 +23,13 @@ class CategoriaController {
             error_log(print_r($data, true));
     
             $nombre = $data['nombre'] ?? '';
-            $descripcion = $data['descripcion'] ?? '';
+
     
-            if (empty($nombre) || empty($descripcion)) {
+            if (empty($nombre)) {
                 throw new Exception('Todos los campos son obligatorios');
             }
     
-            $resultado = $this->categoria->agregar($nombre, $descripcion);
+            $resultado = $this->categoria->agregar($nombre);
     
             if ($resultado) {
                 return ['status' => 'success', 'message' => 'Categoría agregada correctamente'];
@@ -50,13 +50,12 @@ class CategoriaController {
             $data = json_decode($json, true);
     
             $nombre = $data['nombre'] ?? '';
-            $descripcion = $data['descripcion'] ?? '';
     
-            if (empty($nombre) || empty($descripcion)) {
+            if (empty($nombre)) {
                 throw new Exception('Todos los campos son obligatorios');
             }
     
-            $resultado = $this->categoria->editar($id, $nombre, $descripcion);
+            $resultado = $this->categoria->editar($id, $nombre);
     
             if ($resultado) {
                 return ['status' => 'success', 'message' => 'Categoría actualizada correctamente'];

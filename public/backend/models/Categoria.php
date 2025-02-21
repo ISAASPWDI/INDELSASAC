@@ -14,17 +14,17 @@ class Categoria {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     // Agregar una categoría
-    public function agregar($nombre, $descripcion) {
-        $query = "INSERT INTO " . $this->table . " (nombre, descripcion) VALUES (?, ?)";
+    public function agregar($nombre) {
+        $query = "INSERT INTO " . $this->table . " (nombre) VALUES (?)";
         $stmt = $this->conn->prepare($query);
-        return $stmt->execute([$nombre, $descripcion]);
+        return $stmt->execute([$nombre]);
     }
 
     // Editar una categoría
-    public function editar($id, $nombre, $descripcion) {
-        $query = "UPDATE " . $this->table . " SET nombre = ?, descripcion = ? WHERE id = ?";
+    public function editar($id, $nombre) {
+        $query = "UPDATE " . $this->table . " SET nombre = ? WHERE id = ?";
         $stmt = $this->conn->prepare($query);
-        return $stmt->execute([$nombre, $descripcion, $id]);
+        return $stmt->execute([$nombre, $id]);
     }
 
     // Eliminar una categoría

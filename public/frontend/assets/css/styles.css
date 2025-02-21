@@ -10,10 +10,6 @@
     object-fit: cover !important;
 }
 
-.container-fluid {
-    margin: 0 !important;
-    padding: 0 !important;
-}
 
 .carousel-indicators button {
     margin: 0 5px;
@@ -93,6 +89,11 @@
 }
 
 /*Our Styles*/
+body{
+    overflow-x: hidden;
+padding: 0  !important;
+margin: 0 !important;
+}
 .bg-green-cotizar {
     background-color: #26d367 !important;
 
@@ -397,6 +398,12 @@
     left: -5px;
     right: -5px;
     bottom: -5px;
+}
+.show-related-products{
+    padding: 50px 180px;
+}
+.related-products-img{
+    padding: 0px !important;
 }
 @media (min-width: 576px) {
     .card-img-top {
